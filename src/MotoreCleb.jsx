@@ -473,9 +473,9 @@ export default function MotoreCleb() {
       <div className="mx-auto max-w-7xl space-y-6 relative z-10">
         <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="text-3xl font-semibold tracking-tight">Motore C.L.E.B. ciclico</h1>
+            <h1 className="text-3xl font-semibold tracking-tight">Motore C.L.E.B. </h1>
             <p className="mt-2 text-sm text-slate-600">
-              Visuale ad albero, assegnazione dei pallini ai soci, creazione nuovi soci, titolo quota e automazione del motore.
+              Albero ciclico, quote e soci in espansione continua.
             </p>
           </div>
 
