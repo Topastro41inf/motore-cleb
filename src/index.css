@@ -21,16 +21,80 @@ body {
 #root {
   min-height: 100vh;
 }
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+}
+
 body::before {
   content: "";
   position: fixed;
-  inset: 0;
+  left: -10%;
+  right: -10%;
+  bottom: 0;
+  height: 260px;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.22;
+  z-index: 2147483646;
+  opacity: 0.42;
   background:
-    radial-gradient(ellipse at 20% 90%, rgba(125, 211, 252, 0.55), transparent 35%),
-    radial-gradient(ellipse at 80% 85%, rgba(250, 204, 21, 0.45), transparent 32%),
-    linear-gradient(120deg, transparent 20%, rgba(125, 211, 252, 0.18) 45%, transparent 70%),
-    linear-gradient(40deg, transparent 25%, rgba(250, 204, 21, 0.14) 50%, transparent 75%);
+    repeating-radial-gradient(
+      ellipse at 50% 100%,
+      rgba(125, 211, 252, 0.00) 0px,
+      rgba(125, 211, 252, 0.00) 28px,
+      rgba(125, 211, 252, 0.34) 42px,
+      rgba(125, 211, 252, 0.00) 72px
+    );
+  filter: blur(1px);
+  animation: clebWavesMove 8s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  left: -10%;
+  right: -10%;
+  bottom: 18px;
+  height: 220px;
+  pointer-events: none;
+  z-index: 2147483647;
+  opacity: 0.30;
+  background:
+    repeating-radial-gradient(
+      ellipse at 50% 100%,
+      rgba(251, 191, 36, 0.00) 0px,
+      rgba(251, 191, 36, 0.00) 34px,
+      rgba(251, 191, 36, 0.28) 52px,
+      rgba(251, 191, 36, 0.00) 86px
+    );
+  filter: blur(1px);
+  animation: clebWavesMoveGold 11s ease-in-out infinite;
+}
+
+@keyframes clebWavesMove {
+  0% {
+    transform: translateY(16px) scaleX(1.02);
+  }
+  50% {
+    transform: translateY(-18px) scaleX(1.08);
+  }
+  100% {
+    transform: translateY(16px) scaleX(1.02);
+  }
+}
+
+@keyframes clebWavesMoveGold {
+  0% {
+    transform: translateY(8px) scaleX(1.05);
+  }
+  50% {
+    transform: translateY(-12px) scaleX(1.12);
+  }
+  100% {
+    transform: translateY(8px) scaleX(1.05);
+  }
 }
