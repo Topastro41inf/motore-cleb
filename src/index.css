@@ -21,3 +21,16 @@ body {
 #root {
   min-height: 100vh;
 }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.22;
+  background:
+    radial-gradient(ellipse at 20% 90%, rgba(125, 211, 252, 0.55), transparent 35%),
+    radial-gradient(ellipse at 80% 85%, rgba(250, 204, 21, 0.45), transparent 32%),
+    linear-gradient(120deg, transparent 20%, rgba(125, 211, 252, 0.18) 45%, transparent 70%),
+    linear-gradient(40deg, transparent 25%, rgba(250, 204, 21, 0.14) 50%, transparent 75%);
+}
