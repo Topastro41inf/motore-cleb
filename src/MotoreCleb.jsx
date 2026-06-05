@@ -17,6 +17,63 @@ function makeUserCode() {
 
 const START_TRIANGLES = 4;
 const MAX_ROWS = 18;
+const STORAGE_KEY = 'cleb-system';
+
+function makeTimestampForFile() {
+  return new Date().toISOString().replace(/[:.]/g, '-');
+}
+
+function isValidClebSystem(candidate) {
+  return Boolean(
+    candidate
+      && typeof candidate === 'object'
+      && Array.isArray(candidate.rows)
+      && Array.isArray(candidate.quotas)
+      && Array.isArray(candidate.payouts)
+      && candidate.rowTriggers
+      && typeof candidate.rowTriggers === 'object'
+      && Array.isArray(candidate.events)
+      && Array.isArray(candidate.users)
+  );
+}
+
+function extractClebSystemFromBackup(parsed) {
+  if (isValidClebSystem(parsed)) return parsed;
+
+  if (parsed?.key === STORAGE_KEY && isValidClebSystem(parsed.data)) {
+    return parsed.data;
+  }
+
+  if (parsed?.project === 'C.L.E.B.' && isValidClebSystem(parsed.data)) {
+    return parsed.data;
+  }
+
+  throw new Error('Il file selezionato non contiene uno stato C.L.E.B. valido.');
+}
+
+function buildBackupEnvelope(data, reason = 'manuale') {
+  return {
+    project: 'C.L.E.B.',
+    app: 'motore-cleb',
+    version: 1,
+    key: STORAGE_KEY,
+    reason,
+    exportedAt: new Date().toISOString(),
+    data,
+  };
+}
+
+function downloadJsonFile(filename, payload) {
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  link.href = url;
+  link.download = filename;
+  link.click();
+
+  URL.revokeObjectURL(url);
+}
 
 const BASE_CYCLE = [
   { code: 'R1', note: 'Accensione iniziale', slots: ['P'] },
@@ -358,11 +415,11 @@ function cellVisual(slot, quota, selectedOwnerId) {
 export default function MotoreCleb() {
   const [system, setSystem] = useState(() => {
     try {
-      const saved = localStorage.getItem('cleb-system');
+      const saved = localStorage.getItem(STORAGE_KEY);
       return saved ? JSON.parse(saved) : createInitial();
     } catch (error) {
       console.error('Errore caricamento dati salvati:', error);
-      localStorage.removeItem('cleb-system');
+      localStorage.removeItem(STORAGE_KEY);
       return createInitial();
     }
   });
@@ -380,10 +437,11 @@ export default function MotoreCleb() {
     note: '',
   });
   const [darkMode, setDarkMode] = useState(true);
+  const [backupStatus, setBackupStatus] = useState('');
 
   useEffect(() => {
     try {
-      localStorage.setItem('cleb-system', JSON.stringify(system));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(system));
     } catch (error) {
       console.error('Errore salvataggio dati:', error);
     }
@@ -434,9 +492,78 @@ export default function MotoreCleb() {
     });
   };
 
+  const handleExportBackup = () => {
+    const payload = buildBackupEnvelope(system, 'manuale');
+    const filename = `cleb-backup-${makeTimestampForFile()}.json`;
+
+    downloadJsonFile(filename, payload);
+    setBackupStatus(`Backup esportato: ${filename}`);
+  };
+
+  const handleImportBackup = () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/json,.json';
+
+    input.onchange = async (event) => {
+      const file = event.target.files?.[0];
+      if (!file) return;
+
+      try {
+        const raw = await file.text();
+        const parsed = JSON.parse(raw);
+        const importedSystem = extractClebSystemFromBackup(parsed);
+
+        const confirmed = window.confirm(
+          `Importare questo backup C.L.E.B.?\n\n` +
+          `Soci: ${importedSystem.users.length}\n` +
+          `Quote: ${importedSystem.quotas.length}\n` +
+          `Righe: ${importedSystem.rows.length}\n\n` +
+          'Lo stato attuale verrà salvato prima in un backup interno del browser.'
+        );
+
+        if (!confirmed) return;
+
+        const internalBackupKey = `${STORAGE_KEY}-before-import-${Date.now()}`;
+        localStorage.setItem(
+          internalBackupKey,
+          JSON.stringify(buildBackupEnvelope(system, 'backup-interno-prima-importazione'))
+        );
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(importedSystem));
+        setSystem(importedSystem);
+
+        const stillExists = importedSystem.users.some((user) => user.id === selectedOwnerId);
+        if (!stillExists) {
+          setSelectedOwnerId(importedSystem.users.find((user) => user.id !== 'CLEB')?.id || 'CLEB');
+        }
+
+        setBackupStatus(`Backup importato: ${file.name}. Copia precedente salvata in localStorage.`);
+      } catch (error) {
+        alert(error instanceof Error ? error.message : 'Errore durante importazione backup C.L.E.B.');
+      }
+    };
+
+    input.click();
+  };
+
   const resetAll = () => {
-    localStorage.removeItem('cleb-system');
+    const confirmed = window.confirm(
+      'Attenzione: questa azione azzera lo stato C.L.E.B. visibile nel browser.\n\n' +
+      'Prima verrà salvato un backup interno automatico. Continuare?'
+    );
+
+    if (!confirmed) return;
+
+    const internalBackupKey = `${STORAGE_KEY}-before-reset-${Date.now()}`;
+    localStorage.setItem(
+      internalBackupKey,
+      JSON.stringify(buildBackupEnvelope(system, 'backup-interno-prima-azzeramento'))
+    );
+
+    localStorage.removeItem(STORAGE_KEY);
     setSystem(createInitial());
+    setBackupStatus('Sistema azzerato. Backup precedente salvato internamente nel browser.');
   };
 
   return (
@@ -483,6 +610,22 @@ export default function MotoreCleb() {
             <Button
               variant="outline"
               className={darkMode ? 'rounded-2xl border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800' : 'rounded-2xl'}
+              onClick={handleExportBackup}
+            >
+              Esporta stato
+            </Button>
+
+            <Button
+              variant="outline"
+              className={darkMode ? 'rounded-2xl border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800' : 'rounded-2xl'}
+              onClick={handleImportBackup}
+            >
+              Importa stato
+            </Button>
+
+            <Button
+              variant="outline"
+              className={darkMode ? 'rounded-2xl border-slate-700 bg-slate-900 text-slate-100 hover:bg-slate-800' : 'rounded-2xl'}
               onClick={() => setDarkMode(!darkMode)}
             >
               {darkMode ? 'Tema chiaro' : 'Tema scuro'}
@@ -497,6 +640,12 @@ export default function MotoreCleb() {
             </Button>
           </div>
         </div>
+
+        {backupStatus && (
+          <div className={darkMode ? 'rounded-2xl border border-cyan-900/60 bg-cyan-950/30 p-3 text-sm text-cyan-100' : 'rounded-2xl border border-cyan-200 bg-cyan-50 p-3 text-sm text-cyan-900'}>
+            {backupStatus}
+          </div>
+        )}
 
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-6">
           <Card className={darkMode ? 'rounded-2xl border-slate-800 bg-slate-900/90' : 'rounded-2xl'}>
