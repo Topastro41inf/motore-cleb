@@ -1,5 +1,5 @@
-import MotoreCleb from './MotoreCleb';
+import ClebPortal from './ClebPortal';
 
 export default function App() {
-  return <MotoreCleb />;
+  return <ClebPortal />;
 }
