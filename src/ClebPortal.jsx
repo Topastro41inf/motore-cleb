@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './portal/components/Header';
 import PublicSite from './portal/pages/PublicSite';
 import EngineView from './portal/pages/EngineView';
+import AccessPage from './portal/pages/AccessPage';
 
 export default function ClebPortal() {
   const [view, setView] = useState('site');
@@ -9,6 +10,12 @@ export default function ClebPortal() {
   const go = (id) => {
     if (id === 'motore') {
       setView('engine');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (id === 'accesso') {
+      setView('access');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -24,11 +31,10 @@ export default function ClebPortal() {
   return (
     <div className="min-h-screen text-white">
       <Header onNavigate={go} />
-      {view === 'engine' ? (
-        <EngineView back={() => go('home')} />
-      ) : (
-        <PublicSite openEngine={() => go('motore')} />
-      )}
+
+      {view === 'engine' && <EngineView back={() => go('home')} />}
+      {view === 'access' && <AccessPage back={() => go('home')} />}
+      {view === 'site' && <PublicSite openEngine={() => go('motore')} openAccess={() => go('accesso')} />}
     </div>
   );
 }

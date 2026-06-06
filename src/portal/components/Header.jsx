@@ -1,7 +1,7 @@
 const navItems = [
   { id: 'home', label: 'Home' },
   { id: 'visione', label: 'Visione' },
-  { id: 'accesso', label: 'Accesso' },
+  { id: 'accesso', label: 'Iscrizione' },
   { id: 'servizi', label: 'Servizi' },
   { id: 'motore', label: 'Motore' },
 ];

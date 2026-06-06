@@ -1,6 +1,6 @@
 import Card from '../components/Card';
 
-export default function PublicSite({ openEngine }) {
+export default function PublicSite({ openEngine, openAccess }) {
   return (
     <main className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-4 pb-16 pt-8 md:px-8">
       <section id="home" className="rounded-[2rem] border border-white/10 bg-slate-950/55 p-7 shadow-2xl backdrop-blur md:p-10">
@@ -21,17 +21,19 @@ export default function PublicSite({ openEngine }) {
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <button
             type="button"
-            onClick={openEngine}
+            onClick={openAccess}
             className="rounded-2xl bg-amber-300 px-5 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-amber-950/30 transition hover:bg-amber-200"
+          >
+            Simula accesso / iscrizione
+          </button>
+
+          <button
+            type="button"
+            onClick={openEngine}
+            className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15"
           >
             Apri il motore C.L.E.B.
           </button>
-          <a
-            href="#accesso"
-            className="rounded-2xl border border-white/15 bg-white/10 px-5 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/15"
-          >
-            Leggi le regole di accesso
-          </a>
         </div>
       </section>
 
@@ -60,35 +62,6 @@ export default function PublicSite({ openEngine }) {
           </p>
         </Card>
       </div>
-
-      <section id="accesso" className="rounded-3xl border border-amber-200/20 bg-amber-200/10 p-6 backdrop-blur">
-        <h2 className="mb-4 text-2xl font-semibold text-amber-100">Accesso, responsabilità e pallini</h2>
-        <div className="grid gap-4 text-sm leading-7 text-slate-100 md:grid-cols-2">
-          <div className="rounded-2xl bg-slate-950/35 p-4">
-            <p className="font-semibold text-white">Iscrizione C.L.E.B.</p>
-            <p>L’iscrizione è il cancello principale.</p>
-            <p>Chi entra in C.L.E.B. riceve 1 pallino base e accetta i documenti previsti.</p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-950/35 p-4">
-            <p className="font-semibold text-white">Pallini extra</p>
-            <p>Oltre all’iscrizione, l’utente può acquisire pacchetti da 3, 6, 9 o 10 pallini.</p>
-            <p>Il limite massimo è 10 pallini extra all’anno.</p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-950/35 p-4">
-            <p className="font-semibold text-white">Maturazione</p>
-            <p>Quando un pallino matura, il sistema genera:</p>
-            <p>1 nuovo pallino nell’albero, 1 pallino personale per l’utente, 2 quadrati C.L.E.B.</p>
-          </div>
-
-          <div className="rounded-2xl bg-slate-950/35 p-4">
-            <p className="font-semibold text-white">Dashboard utente</p>
-            <p>Il pallino maturato personale non viene reinserito automaticamente.</p>
-            <p>L’utente potrà tenerlo, riscattarlo o reinserirlo secondo regolamento.</p>
-          </div>
-        </div>
-      </section>
 
       <section id="servizi" className="grid gap-6 lg:grid-cols-2">
         <Card title="Unità Valore">
