@@ -3,6 +3,7 @@ const navItems = [
   { id: 'visione', label: 'Visione' },
   { id: 'accesso', label: 'Iscrizione' },
   { id: 'servizi', label: 'Servizi' },
+  { id: 'uv', label: 'Unità Valore' },
   { id: "dashboard", label: "Dashboard" },
     { id: 'custode', label: 'Custode' },
   { id: 'motore', label: 'Motore' },
