@@ -292,27 +292,27 @@ export const dashboardCounterDefinitions = [
     note: "Pacchetti previsti: 3, 6, 9, 10. Massimo 10 extra annui.",
   },
   {
-    label: "Pallini maturati personali",
+    label: "Crediti personali disponibili",
     field: "maturedPersonalDots",
-    note: "Crediti personali maturati e ancora disponibili nella dashboard.",
+    note: "Crediti personali maturati e ancora disponibili nella dashboard cliente.",
   },
   {
-    label: "Pallini riscattati",
+    label: "Crediti personali riscattati",
     field: "redeemedDots",
-    note: "Pallini personali già riscattati dall’utente.",
+    note: "Crediti personali già riscattati dall’utente.",
   },
   {
-    label: "Pallini reinseriti",
+    label: "Crediti personali reinseriti",
     field: "reinsertedDots",
-    note: "Pallini maturati che l’utente ha scelto di reinserire nell’albero.",
+    note: "Crediti personali che l’utente ha scelto di reinserire nell’albero.",
   },
 ];
 
 export const dashboardSeparationItems = [
   "Pallino nell’albero",
-  "Pallino maturato dashboard",
-  "Pallino riscattato",
-  "Pallino reinserito",
+  "Credito personale disponibile",
+  "Credito personale riscattato",
+  "Credito personale reinserito",
 ];
 
 export const dashboardAdminOnlyFields = [

@@ -82,17 +82,17 @@ export default function DashboardPage() {
           </div>
         </DashboardCard>
 
-        <DashboardCard title="Pallini attivi">
+        <DashboardCard title="Pallini nell’albero">
           <div className="flex items-end gap-3">
             <span className="text-5xl font-bold text-amber-300">
               {activeDots}
             </span>
             <span className="pb-2 text-sm text-zinc-400">
-              base + UV + extra
+              base + UV + extra nell’albero
             </span>
           </div>
           <p className="mt-4 text-sm text-zinc-300">
-            I pallini attivi non sono la stessa cosa dei pallini maturati,
+            I pallini nell’albero non sono la stessa cosa dei pallini maturati,
             riscattati o reinseriti.
           </p>
         </DashboardCard>
