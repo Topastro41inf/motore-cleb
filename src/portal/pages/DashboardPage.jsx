@@ -6,6 +6,7 @@ import InfoLine from "../components/dashboard/InfoLine";
 import ScenarioSelector from "../components/dashboard/ScenarioSelector";
 import SeparationGrid from "../components/dashboard/SeparationGrid";
 import StatusBadge from "../components/dashboard/StatusBadge";
+import FutureActionsPanel from "../components/dashboard/FutureActionsPanel";
 import {
   dashboardCounterDefinitions,
   dashboardScenarioOrder,
@@ -122,6 +123,8 @@ export default function DashboardPage() {
       </div>
 
       <SeparationGrid items={dashboardSeparationItems} />
-    </main>
+    
+      <FutureActionsPanel />
+</main>
   );
 }
