@@ -8,6 +8,7 @@ import FiloAriannaPage from './portal/pages/FiloAriannaPage';
 import DashboardPage from "./portal/pages/DashboardPage";
 import CustodePage from "./portal/pages/CustodePage";
 import UnitaValorePage from './portal/pages/UnitaValorePage';
+import DocumentsPage from './portal/pages/DocumentsPage';
 export default function ClebPortal() {
   const [view, setView] = useState('site');
 
@@ -50,6 +51,12 @@ if (id === 'dashboard') {
 
 
 
+    if (id === 'documenti') {
+      setView('documents');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     setView('site');
     requestAnimationFrame(() => {
       const target = id === 'home' ? null : document.getElementById(id);
@@ -68,6 +75,7 @@ if (id === 'dashboard') {
       {view === 'custode' && <CustodePage back={() => go('home')} />}      {view === 'uv' && <UnitaValorePage back={() => go('home')} />}
 
 
+      {view === 'documents' && <DocumentsPage back={() => go('home')} />}
       {view === 'site' && <PublicSite openEngine={() => go('motore')} openAccess={() => go('accesso')} />}
     </div>
   );

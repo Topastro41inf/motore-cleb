@@ -7,6 +7,7 @@ const navItems = [
   { id: "dashboard", label: "Dashboard" },
   { id: 'filo', label: 'Filo di Arianna' },
     { id: 'custode', label: 'Custode' },
+    { id: 'documenti', label: 'Documenti' },
   { id: 'motore', label: 'Motore' },
 ];
 
