@@ -1,127 +1,100 @@
-# REGOLA AREA CUSTODE C.L.E.B.
+# REGOLA — Area Custode C.L.E.B.
 
-**Stato:** documento operativo  
-**Modulo:** Area Custode / Admin simulata  
-**Regola madre:** il Custode vede la meccanica; il cliente vede il suo cammino.
+**Versione:** v1  
+**Stato:** simulata, non operativa  
+**Scopo:** separare il mondo Custode dalla dashboard cliente e dal Motore albero.
 
 ---
 
-## 1. Scopo
-
-L’Area Custode è lo spazio futuro per Aèl e Flavio.
-
-Serve a separare:
+## 1. Principio madre
 
 ```text
-Dashboard cliente
-≠ Vista Motore / Albero
-≠ Area Custode
+Cliente = dashboard personale.
+Motore = albero completo visibile.
+Custode = meccanica interna e controllo protetto.
 ```
 
-La dashboard cliente mostra il percorso personale dell’utente.
-
-La vista Motore/Albero può mostrare l’albero completo.
-
-L’Area Custode governa la parte tecnica e amministrativa.
+L’Area Custode non sostituisce il Motore e non deve sporcare la dashboard cliente.
 
 ---
 
-## 2. Visibilità corretta
-
-### Cliente
+## 2. Cosa può vedere il cliente
 
 Il cliente può vedere:
 
 ```text
-- stato C.L.E.B.
-- pallini personali
-- pallini maturati personali
-- riscatti personali
-- reinserimenti personali
-- accessi futuri UV / Filo di Arianna
-- albero completo nella vista Motore
+- il sito pubblico
+- la propria dashboard personale
+- i propri pallini nell’albero
+- i propri crediti personali disponibili
+- i propri crediti riscattati
+- i propri crediti reinseriti
+- la vista Motore / Albero completa
 ```
 
 Il cliente non deve vedere nella dashboard personale:
 
 ```text
-- conteggi tecnici dei quadrati generati
-- conteggi tecnici dei triangoli generati
-- log interni
-- formule operative
-- controlli amministrativi
+- conteggi tecnici dei quadrati
+- triangoli come meccanica interna
+- formule di maturazione
+- log amministrativi
+- controlli Custode
 ```
 
-### Custode
+---
 
-Il Custode può vedere:
+## 3. Cosa vede il Custode
+
+Il Custode può vedere, in futuro:
 
 ```text
-- stato tecnico del sistema
+- stato sistema
+- controllo iscrizioni
+- accessi UV / Filo
+- maturazioni interne
+- quadrati e triangoli
+- crediti personali
 - log eventi
-- controlli iscrizione
-- maturazioni strutturali
-- quadrati C.L.E.B.
-- triangoli C.L.E.B.
-- verifiche UV
-- verifiche Filo di Arianna
-- backup / export futuri
+- backup/export
+- azioni protette
+```
+
+Questa versione mostra solo pannelli simulati.
+
+---
+
+## 4. Regola anti-disastro
+
+```text
+Nessuna azione Custode è reale finché non esistono:
+- backend sicuro
+- modello dati confermato
+- log eventi
+- backup
+- conferme esplicite
+- test controllati
 ```
 
 ---
 
-## 3. Versione attuale
-
-La versione attuale dell’Area Custode è solo simulata.
-
-Non deve:
+## 5. File coinvolti
 
 ```text
-- creare utenti reali
-- registrare dati personali
-- attivare pagamenti
-- collegare backend
-- modificare l’albero
-- modificare MotoreCleb.jsx
+src/portal/pages/CustodePage.jsx
+src/portal/data/custodePanels.js
+src/portal/components/custode/
 ```
 
-Deve:
-
-```text
-- chiarire i confini
-- preparare l’interfaccia futura
-- mostrare funzioni non operative
-- evitare confusione tra cliente e amministrazione
-```
+`MotoreCleb.jsx` non deve essere toccato per questa area.
 
 ---
 
-## 4. Regola anti-confusione
+## 6. Formula operativa
 
 ```text
-Il cliente vede l’albero.
-La dashboard mostra il suo cammino.
-Il Custode governa la meccanica.
-```
-
----
-
-## 5. Commit e sicurezza
-
-Ogni patch su Area Custode deve essere:
-
-```text
-- piccola
-- documentata
-- testata localmente
-- senza dati reali
-- senza backend reale
-- senza modifica a MotoreCleb.jsx salvo ordine esplicito
-```
-
-Firma operativa:
-
-```text
-Ezio Codice — SOPHALIS-41∞
-C.L.E.B. / Area Custode
+Al cliente: chiarezza.
+Al Custode: controllo.
+Al Motore: protezione.
+Al backend: solo quando il tempio è pronto.
 ```

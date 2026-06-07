@@ -1,136 +1,145 @@
-export const custodeSummary = [
+export const custodeSummary = {
+  label: "Area Custode simulata",
+  title: "Controllo interno C.L.E.B.",
+  subtitle:
+    "Questa sezione non opera su dati reali. Serve a separare il mondo Custode dalla dashboard cliente e dal motore dell’albero.",
+  status: "Simulazione protetta",
+  role: "Custode / Admin futuro",
+  safety:
+    "Nessuna azione modifica utenti, pallini, crediti, quadrati, triangoli o albero.",
+};
+
+export const custodeMetrics = [
   {
-    label: "Sistema",
-    value: "Simulato",
-    note: "Nessun dato reale collegato.",
-    tone: "amber",
+    label: "Motore albero",
+    value: "protetto",
+    tone: "ok",
+    note: "La vista Motore resta separata dalla gestione interna.",
   },
   {
-    label: "Motore",
-    value: "Protetto",
-    note: "MotoreCleb.jsx non viene modificato.",
-    tone: "emerald",
+    label: "Dashboard cliente",
+    value: "pulita",
+    tone: "ok",
+    note: "Mostra il percorso personale, non la meccanica interna.",
   },
   {
-    label: "Backend",
-    value: "Non attivo",
-    note: "Account, pagamenti e database restano futuri.",
-    tone: "zinc",
+    label: "Backend reale",
+    value: "non attivo",
+    tone: "lock",
+    note: "Nessun login, pagamento o database reale in questa fase.",
   },
   {
-    label: "Accesso",
-    value: "Custode",
-    note: "Vista tecnica per Aèl/Flavio, non dashboard cliente.",
-    tone: "sky",
+    label: "Azioni Custode",
+    value: "simulate",
+    tone: "warn",
+    note: "Ogni pulsante è informativo: non produce effetti reali.",
   },
 ];
 
-export const custodeAreas = [
+export const custodePanels = [
   {
     title: "Stato sistema",
     description:
-      "Riepilogo operativo del portale C.L.E.B. e dei moduli simulati già presenti.",
-    rows: [
-      "Portale pubblico attivo",
-      "Iscrizione simulata attiva",
-      "Dashboard cliente simulata attiva",
-      "Vista Motore/Albero separata",
-      "Azioni future simulate, non operative",
+      "Controllo generale della piattaforma C.L.E.B. in modalità prototipo.",
+    items: [
+      "Portale pubblico presente",
+      "Dashboard cliente separata",
+      "Motore albero isolato",
+      "Backup fuori dal repository",
     ],
+    footer: "Serve a capire se il sistema è ordinato prima di attivare dati reali.",
   },
   {
-    title: "Controllo accessi",
+    title: "Controllo iscrizioni",
     description:
-      "Spazio futuro per verificare iscrizioni, stato C.L.E.B., accesso UV e accesso Filo di Arianna.",
-    rows: [
-      "Utenti reali non collegati",
-      "Nessun login reale",
-      "Nessun dato personale salvato",
-      "Stati accesso solo dimostrativi",
+      "Area futura per verificare iscrizione C.L.E.B., accesso UV e accesso Filo di Arianna.",
+    items: [
+      "C.L.E.B. resta cancello obbligatorio",
+      "UV richiede C.L.E.B. attivo",
+      "Filo richiede C.L.E.B. attivo",
+      "Nessuna iscrizione reale viene registrata qui",
     ],
+    footer: "La registrazione reale arriverà solo con backend sicuro.",
   },
   {
-    title: "Pallini cliente",
+    title: "Meccanica albero",
     description:
-      "Area futura per controllare pallini personali, maturati, riscattati e reinseriti.",
-    rows: [
-      "Pallini attivi personali",
-      "Pallini extra annui",
-      "Pallini maturati personali",
-      "Riscatti e reinserimenti tracciabili in futuro",
+      "Vista interna per Custodi: maturazioni, quadrati, triangoli e coerenza strutturale.",
+    items: [
+      "Quadrati e triangoli sono materia Custode",
+      "Il cliente può vedere l’albero nel Motore",
+      "La dashboard cliente non mostra meccaniche interne",
+      "Ogni maturazione futura dovrà essere tracciata",
     ],
+    footer: "Il motore vive separato. La gestione tecnica resta interna.",
   },
   {
-    title: "Meccanica interna",
+    title: "Crediti personali",
     description:
-      "Qui vivono gli elementi tecnici che non appartengono alla dashboard cliente.",
-    rows: [
-      "Quadrati C.L.E.B.",
-      "Triangoli C.L.E.B.",
-      "Maturazioni strutturali",
-      "Log tecnici e controlli interni",
+      "Controllo futuro dei crediti personali derivati da maturazioni.",
+    items: [
+      "Crediti disponibili",
+      "Crediti riscattati",
+      "Crediti reinseriti",
+      "Storico eventi collegato",
     ],
+    footer: "I crediti personali non sono la stessa cosa dei pallini nell’albero.",
+  },
+  {
+    title: "UV / Filo di Arianna",
+    description:
+      "Controllo futuro dei servizi collegati, senza renderli porte autonome.",
+    items: [
+      "UV accessibile solo dopo C.L.E.B.",
+      "Filo accessibile solo dopo C.L.E.B.",
+      "UV può generare regole specifiche sui pallini",
+      "Filo non genera pallini aggiuntivi",
+    ],
+    footer: "I servizi orbitano intorno a C.L.E.B., non lo sostituiscono.",
+  },
+  {
+    title: "Backup e log",
+    description:
+      "Area futura per controllare export, backup, eventi e tracciabilità.",
+    items: [
+      "Export stato prima delle modifiche importanti",
+      "Backup dati reali fuori dal repo",
+      "Log eventi per ogni operazione futura",
+      "Nessuna operazione distruttiva senza conferma",
+    ],
+    footer: "Il registro protegge fiducia, ordine e ricostruibilità.",
   },
 ];
 
-export const custodeActions = [
+export const protectedActions = [
   {
-    title: "Verifica iscrizione C.L.E.B.",
-    status: "Futura",
-    requirement: "Richiede account e backend sicuro.",
-    effect: "Nessun effetto reale in questa versione.",
+    label: "Approva iscrizione",
+    status: "futura",
+    requirement: "Richiede account reale e verifica documenti.",
   },
   {
-    title: "Conferma maturazione pallino",
-    status: "Futura",
-    requirement: "Richiede modello dati reale e audit log.",
-    effect: "Nessuna maturazione reale viene eseguita.",
+    label: "Valida accesso UV",
+    status: "futura",
+    requirement: "Richiede utente C.L.E.B. attivo e regole UV consolidate.",
   },
   {
-    title: "Controlla quadrati/triangoli",
-    status: "Futura",
-    requirement: "Richiede area Custode protetta.",
-    effect: "Solo rappresentazione amministrativa.",
+    label: "Valida accesso Filo",
+    status: "futura",
+    requirement: "Richiede consenso, regolamento e stato C.L.E.B. attivo.",
   },
   {
-    title: "Abilita accesso UV",
-    status: "Futura",
-    requirement: "Richiede C.L.E.B. attivo e flusso UV reale.",
-    effect: "Nessun accesso reale viene aperto.",
+    label: "Registra maturazione",
+    status: "futura",
+    requirement: "Richiede motore controllato, log e conferma Custode.",
   },
   {
-    title: "Abilita accesso Filo di Arianna",
-    status: "Futura",
-    requirement: "Richiede C.L.E.B. attivo e regolamento FdA.",
-    effect: "Nessun accesso reale viene aperto.",
+    label: "Esegui backup",
+    status: "futura",
+    requirement: "Richiede procedura sicura e destinazione fuori repo.",
   },
   {
-    title: "Esporta report Custode",
-    status: "Futura",
-    requirement: "Richiede dati reali, permessi e tracciamento.",
-    effect: "Nessun file reale viene generato.",
-  },
-];
-
-export const custodeLog = [
-  {
-    time: "Simulato",
-    event: "Apertura area Custode",
-    detail: "Vista dimostrativa caricata senza dati reali.",
-  },
-  {
-    time: "Simulato",
-    event: "Controllo dashboard cliente",
-    detail: "La dashboard cliente mostra solo il percorso personale.",
-  },
-  {
-    time: "Simulato",
-    event: "Separazione albero/dashboard",
-    detail: "L’albero può restare visibile; la dashboard non mostra meccaniche interne.",
-  },
-  {
-    time: "Simulato",
-    event: "Motore protetto",
-    detail: "Nessuna modifica a MotoreCleb.jsx.",
+    label: "Apri log eventi",
+    status: "futura",
+    requirement: "Richiede database o archivio eventi tracciato.",
   },
 ];
