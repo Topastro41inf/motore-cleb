@@ -5,6 +5,7 @@ const navItems = [
   { id: 'servizi', label: 'Servizi' },
   { id: 'uv', label: 'Unità Valore' },
   { id: "dashboard", label: "Dashboard" },
+  { id: 'filo', label: 'Filo di Arianna' },
     { id: 'custode', label: 'Custode' },
   { id: 'motore', label: 'Motore' },
 ];
