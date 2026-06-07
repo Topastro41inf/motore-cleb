@@ -4,6 +4,7 @@ import PublicSite from './portal/pages/PublicSite';
 import EngineView from './portal/pages/EngineView';
 import AccessPage from './portal/pages/AccessPage';
 
+import DashboardPage from "./portal/pages/DashboardPage";
 export default function ClebPortal() {
   const [view, setView] = useState('site');
 

@@ -3,7 +3,8 @@ const navItems = [
   { id: 'visione', label: 'Visione' },
   { id: 'accesso', label: 'Iscrizione' },
   { id: 'servizi', label: 'Servizi' },
-  { id: 'motore', label: 'Motore' },
+  { id: "dashboard", label: "Dashboard" },
+    { id: 'motore', label: 'Motore' },
 ];
 
 export default function Header({ onNavigate }) {
