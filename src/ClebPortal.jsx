@@ -21,6 +21,12 @@ export default function ClebPortal() {
       return;
     }
 
+    if (id === 'dashboard') {
+      setView('dashboard');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     setView('site');
     requestAnimationFrame(() => {
       const target = id === 'home' ? null : document.getElementById(id);
@@ -34,7 +40,8 @@ export default function ClebPortal() {
       <Header onNavigate={go} />
 
       {view === 'engine' && <EngineView back={() => go('home')} />}
-      {view === 'access' && <AccessPage back={() => go('home')} />}
+      {view === 'access' && <AccessPage back={() => go('home')} />}      {view === 'dashboard' && <DashboardPage back={() => go('home')} />}
+
       {view === 'site' && <PublicSite openEngine={() => go('motore')} openAccess={() => go('accesso')} />}
     </div>
   );
