@@ -5,6 +5,7 @@ import EngineView from './portal/pages/EngineView';
 import AccessPage from './portal/pages/AccessPage';
 
 import DashboardPage from "./portal/pages/DashboardPage";
+import CustodePage from "./portal/pages/CustodePage";
 export default function ClebPortal() {
   const [view, setView] = useState('site');
 
@@ -27,6 +28,12 @@ export default function ClebPortal() {
       return;
     }
 
+    if (id === 'custode') {
+      setView('custode');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     setView('site');
     requestAnimationFrame(() => {
       const target = id === 'home' ? null : document.getElementById(id);
@@ -41,6 +48,7 @@ export default function ClebPortal() {
 
       {view === 'engine' && <EngineView back={() => go('home')} />}
       {view === 'access' && <AccessPage back={() => go('home')} />}      {view === 'dashboard' && <DashboardPage back={() => go('home')} />}
+      {view === 'custode' && <CustodePage back={() => go('home')} />}
 
       {view === 'site' && <PublicSite openEngine={() => go('motore')} openAccess={() => go('accesso')} />}
     </div>
