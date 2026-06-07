@@ -33,15 +33,16 @@ export default function DashboardPage() {
     <main className="mx-auto max-w-6xl px-4 py-10 text-zinc-100">
       <div className="mb-8">
         <p className="mb-2 text-sm uppercase tracking-[0.3em] text-amber-300">
-          Dashboard simulata · componenti modulari
+          Dashboard cliente simulata
         </p>
         <h1 className="text-3xl font-bold text-white md:text-4xl">
           Area Utente C.L.E.B.
         </h1>
         <p className="mt-3 max-w-3xl text-zinc-300">
-          Questa schermata testa scenari diversi senza registrare utenti reali,
-          senza pagamenti, senza backend e senza modificare il motore dell’albero.
-          Dati, pagina e componenti visuali sono separati.
+          Questa schermata mostra solo la posizione personale dell’utente: stato,
+          accessi e pallini personali. L’albero completo resta consultabile nella
+          vista Motore/Albero, mentre quadrati, triangoli e meccaniche interne
+          non diventano contatori della dashboard cliente.
         </p>
       </div>
 
@@ -52,6 +53,11 @@ export default function DashboardPage() {
         scenarioOrder={dashboardScenarioOrder}
         scenarios={dashboardScenarios}
       />
+
+      <div className="mb-5 rounded-2xl border border-sky-300/15 bg-sky-300/[0.06] p-4 text-sm leading-6 text-sky-50">
+        <strong className="text-white">Nota vista cliente:</strong> questa dashboard mostra solo i pallini personali dell’utente. 
+        L’albero completo resta visibile nella vista Motore/Albero, ma quadrati, triangoli e meccaniche interne sono materia Admin/Custode.
+      </div>
 
       <div className="grid gap-5 md:grid-cols-3">
         <DashboardCard title="Stato utente">
@@ -87,7 +93,7 @@ export default function DashboardPage() {
           </div>
           <p className="mt-4 text-sm text-zinc-300">
             I pallini attivi non sono la stessa cosa dei pallini maturati,
-            riscattati, reinseriti o dei quadrati C.L.E.B.
+            riscattati o reinseriti.
           </p>
         </DashboardCard>
 

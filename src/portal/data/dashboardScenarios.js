@@ -1,3 +1,10 @@
+// Dashboard C.L.E.B. — dati simulati lato cliente
+// Regola di visibilità:
+// - Il cliente vede in dashboard solo stato personale, accessi e pallini personali.
+// - Il cliente può consultare l’albero completo nella vista Motore/Albero.
+// - Quadrati, triangoli, calcoli strutturali e log interni non diventano contatori dashboard.
+// - I campi adminOnly possono esistere nei dati simulati, ma NON vanno mostrati nella dashboard cliente.
+
 export const dashboardScenarios = {
   nonIscritto: {
     label: "Non iscritto",
@@ -11,11 +18,13 @@ export const dashboardScenarios = {
       baseDots: 0,
       uvDots: 0,
       extraDots: 0,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Visita al portale pubblico",
@@ -37,11 +46,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 0,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Iscrizione C.L.E.B. simulata",
@@ -63,11 +74,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 0,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Utente arrivato dal flusso UV",
@@ -90,11 +103,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 1,
       extraDots: 0,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Utente già C.L.E.B. attivo",
@@ -116,11 +131,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 0,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Utente già C.L.E.B. attivo",
@@ -142,11 +159,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 3,
-      treeDotsGenerated: 0,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 0,
+      adminOnly: {
+        clebSquares: 0,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Iscrizione C.L.E.B. attiva",
@@ -158,7 +177,7 @@ export const dashboardScenarios = {
 
   maturazione: {
     label: "Maturazione avvenuta",
-    subtitle: "Un pallino matura e genera le tre conseguenze distinte.",
+    subtitle: "Un pallino matura e aggiorna solo le informazioni utili al cliente.",
     user: {
       name: "Utente con maturazione",
       clebStatus: "attivo",
@@ -168,19 +187,21 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 3,
-      treeDotsGenerated: 1,
       maturedPersonalDots: 1,
       redeemedDots: 0,
       reinsertedDots: 0,
-      clebSquares: 2,
+      adminOnly: {
+        clebSquares: 2,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Pallino attivo maturato",
-      "Creato 1 nuovo pallino nell’albero",
+      "Aggiornamento visibile nell’albero",
       "Creato 1 pallino personale maturato in dashboard",
-      "Creati 2 quadrati C.L.E.B.",
+      "La parte strutturale interna resta gestita dagli amministratori",
     ],
-    rule: "Quando 1 pallino matura: 1 nuovo pallino nell’albero + 1 pallino personale utente + 2 quadrati C.L.E.B.",
+    rule: "Quando un pallino matura, il cliente vede il credito personale maturato e l’eventuale aggiornamento visibile dell’albero. Calcoli, quadrati e triangoli restano area Admin/Custode.",
   },
 
   riscatto: {
@@ -195,11 +216,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 3,
-      treeDotsGenerated: 1,
       maturedPersonalDots: 0,
       redeemedDots: 1,
       reinsertedDots: 0,
-      clebSquares: 2,
+      adminOnly: {
+        clebSquares: 2,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Maturazione precedente registrata",
@@ -222,11 +245,13 @@ export const dashboardScenarios = {
       baseDots: 1,
       uvDots: 0,
       extraDots: 3,
-      treeDotsGenerated: 2,
       maturedPersonalDots: 0,
       redeemedDots: 0,
       reinsertedDots: 1,
-      clebSquares: 2,
+      adminOnly: {
+        clebSquares: 2,
+        clebTriangles: 0,
+      },
     },
     events: [
       "Maturazione precedente registrata",
@@ -267,11 +292,6 @@ export const dashboardCounterDefinitions = [
     note: "Pacchetti previsti: 3, 6, 9, 10. Massimo 10 extra annui.",
   },
   {
-    label: "Nuovi pallini generati nell’albero",
-    field: "treeDotsGenerated",
-    note: "Effetto della maturazione o del reinserimento, distinto dai crediti personali.",
-  },
-  {
     label: "Pallini maturati personali",
     field: "maturedPersonalDots",
     note: "Crediti personali maturati e ancora disponibili nella dashboard.",
@@ -286,11 +306,6 @@ export const dashboardCounterDefinitions = [
     field: "reinsertedDots",
     note: "Pallini maturati che l’utente ha scelto di reinserire nell’albero.",
   },
-  {
-    label: "Quadrati C.L.E.B.",
-    field: "clebSquares",
-    note: "Generati dalla maturazione secondo la regola: 1 pallino maturo = 2 quadrati C.L.E.B.",
-  },
 ];
 
 export const dashboardSeparationItems = [
@@ -298,5 +313,12 @@ export const dashboardSeparationItems = [
   "Pallino maturato dashboard",
   "Pallino riscattato",
   "Pallino reinserito",
-  "Quadrato C.L.E.B.",
+];
+
+export const dashboardAdminOnlyFields = [
+  "Quadrati C.L.E.B.",
+  "Triangoli C.L.E.B.",
+  "Formule di maturazione",
+  "Log strutturali",
+  "Calcoli interni",
 ];
