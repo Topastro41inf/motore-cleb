@@ -1,12 +1,14 @@
 import FdaInfoCard from "../components/fda/FdaInfoCard";
 import FdaRuleList from "../components/fda/FdaRuleList";
 import FdaSimulatorPanel from "../components/fda/FdaSimulatorPanel";
+import FdaExternalLinkPanel from "../components/fda/FdaExternalLinkPanel";
 import {
   filoAriannaSections,
   filoAriannaRules,
   filoAriannaSteps,
   filoAriannaSimulator,
 } from "../data/filoAriannaContent";
+import { externalServiceLinks } from "../data/externalServiceLinks";
 
 export default function FiloAriannaPage({ back }) {
   return (
@@ -67,6 +69,7 @@ export default function FiloAriannaPage({ back }) {
       </section>
 
       <FdaSimulatorPanel simulator={filoAriannaSimulator} />
+      <FdaExternalLinkPanel link={externalServiceLinks.filoArianna} />
 
       <section className="mt-6 rounded-3xl border border-amber-400/20 bg-amber-400/10 p-5 text-sm leading-7 text-amber-50">
         <p className="font-semibold text-amber-100">Nota responsabile</p>
